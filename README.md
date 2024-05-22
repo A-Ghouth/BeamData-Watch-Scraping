@@ -1,19 +1,28 @@
 # Moritz Grossmann Watch Scraping
-As part of this project, a python script is was used to scrape Moritz Grossmann website and collect information about all the watches. The script was containerized and pushed to Docker Hub.
 
-## Files
-The project includes two main files:
-- **init.sh** is used install/update packages and set some configurations
-- **run.sh** is used to pull/run the container then store the dataset to AWS S3
+## Overview
+This project involves using Python to scrape the Moritz Grossmann website and collect information about all the watches. The script is containerized and pushed to Docker Hub for easy deployment and distribution.
 
-It is necessary to create a .env file to include AWS IAM information as well as AWS S3 bucket name and location. The variables that need to be set are:
-- ACCESS_KY_ID
-- SECRET_KEY
-- LOCATION
-- BUCKET
+## Project Files
+The project includes the following main files:
+
+1. **init.sh**: This script is used to install/update packages and set some configurations before running the web scraping script.
+
+2. **run.sh**: This script is responsible for pulling the Docker container, running the web scraping script, and storing the dataset to an AWS S3 bucket.
+
+## Environmental Variables
+To use this project, you will need to create a `.env` file and include the following environment variables:
+
+- `ACCESS_KY_ID`: Your AWS IAM access key ID
+- `SECRET_KEY`: Your AWS IAM secret access key
+- `LOCATION`: The location of your AWS S3 bucket
+- `BUCKET`: The name of your AWS S3 bucket
 
 ## Script Automation
-A cron job is scheduled to automate the web scraping process. For testing purposes, the following command was used to run the script every 5 minutes:
-`*/5 * * * * cd ~/web-scraping-project && bash run.sh`
+To automate the web scraping process, a cron job can be scheduled to run the `run.sh` script periodically. For testing purposes, the following command was used to run the script every 5 minutes:
 
-Note: the script needs 2-3 minutes to run.
+```
+*/5 * * * * cd ~/web-scraping-project && bash run.sh
+```
+
+Note that the script typically takes 2-3 minutes to run.
